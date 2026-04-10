@@ -1,5 +1,6 @@
-package dev.java10x.CadastroDeNinjas;
+package dev.java10x.CadastroDeNinjas.Ninjas;
 
+import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,12 +8,18 @@ import jakarta.persistence.*;
 public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String nome;
-    String email;
-    int idade;
+    private Long id;
+    private String nome;
+    private String email;
+    private int idade;
+
+
+    @ManyToOne
+    @JoinColumn(name = "missoes_id")//Foreing key ou chave estrangeiragi
+    private MissoesModel missoes;
 
     public NinjaModel(){
+
     }
 
     public NinjaModel(String nome, String email, int idade) {
@@ -50,7 +57,6 @@ public class NinjaModel {
     public void setId(Long id) {
         this.id = id;
     }
-
     public Long getId() {
         return id;
     }
